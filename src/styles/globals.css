@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    background-color: #f0f6ff;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}
+
+body > div {
+    width: 100%;
+}
+
+
+
+
+.fade-enter  {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.fade-enter-active  {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.fade-exit  {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.fade-exit-active  {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.fade-enter-active ,
+.fade-exit-active {
+    transition: opacity 500ms, transform 500ms;
+}
