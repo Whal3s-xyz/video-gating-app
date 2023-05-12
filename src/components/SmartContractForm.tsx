@@ -125,6 +125,7 @@ export default function SmartContractForm({setNextValid}: {
                     </label>
                     <input
                         {...register("contractAddress", {
+                            disabled: !watchNetwork,
                             required: true,
                             pattern: /^0x[a-fA-F0-9]{40}$/i
                         })}
@@ -136,7 +137,7 @@ export default function SmartContractForm({setNextValid}: {
                     {errors.contractAddress && errors.contractAddress.type === "required" &&
                         <InputError>This field is required</InputError>}
 
-                    {isAbiValid === false && <InputError>No verified contract found for network and contract address combination.</InputError>}
+                    {isAbiValid === false && !isValidating && watchContractAddress && watchNetwork && <InputError>No verified contract found for network and contract address combination.</InputError>}
                 </div>
 
 

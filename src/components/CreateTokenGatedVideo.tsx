@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import SmartContractForm from "@/components/SmartContractForm";
 import TraitsForm from "@/components/TraitsForm";
 import SelectFile from "@/components/SelectFile";
 import dynamic from "next/dynamic";
 import {Sidebar} from "@/components/Sidebar";
+import {UtilityContext} from "@/modules/UtilityContext";
 
 
 type HeaderContent = {
@@ -21,6 +22,8 @@ const CreateTokenGatedVideo = ({onBack}: { onBack: () => void }) => {
 
     const [step, setStep] = useState('smartContractForm');
     const [nextValid, setNextValid] = useState(false);
+    const {state, dispatch} = useContext(UtilityContext);
+
 
     useEffect(() => {
         setNextValid(false)
@@ -98,7 +101,8 @@ const CreateTokenGatedVideo = ({onBack}: { onBack: () => void }) => {
                         <li>
                             {step !== 'proceed' && <button disabled={!nextValid}
                                     className={`btn btn-secondary`}
-                                    onClick={() => nextValid && increseStep()}>Next
+                                    onClick={() => nextValid && increseStep()}>
+                                {step === 'traitsForm' && !state.trait  ? 'Skip': 'Next'}
                             </button>}
                         </li>
                     </menu>
